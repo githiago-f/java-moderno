@@ -19,15 +19,12 @@ public class OrdenaStringsWLMain {
         /*
          * 1. Substituindo Collections.sort por default List.sort()
          * 2. Substituindo ComparadorDeComodos por Comparator<String>
+         * 3. Substituindo função por integer.compare
          */
         comodosDaCasa.sort(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                if (o1.length() < o2.length())
-                    return -1;
-                if (o1.length() > o2.length())
-                    return 1;
-                return 0;
+                return Integer.compare(o1.length(), o2.length());
             }
         });
 
@@ -35,7 +32,15 @@ public class OrdenaStringsWLMain {
          * 1. Substituindo foreach (for(obj : objs)) por forEach de Iterator
          * 2. Substituindo ComodoConsumer por Consumer<String>
          * 3. Substituindo Consumer<String> por lambda
+         * 4. Substituindo lambda por referencia do metodo
          */
-        comodosDaCasa.forEach((s) -> System.out.println(s));
+        comodosDaCasa.forEach(System.out::println);
+
+        FunctionalITest.sayHello();
+
+        FunctionalITest test = System.out::println;
+
+        test.printAll();
+        test.print("Testando");
     }
 }
